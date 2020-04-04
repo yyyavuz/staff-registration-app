@@ -14,11 +14,11 @@ router.get("/create", function (req, res, next){
 })
 
 router.post("/create", function (req, res, next){
-
+  res.send("Data Saved")
 })
 
-router.delete("/create:id", function (req, res, next){
-  
+router.get("/delete/:id", function (req, res, next){
+  res.send("Data deleted")
 })
 
 module.exports = router;
