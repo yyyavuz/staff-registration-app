@@ -15,16 +15,18 @@ block content
                             th  E-Mail
                             th  Actions
                     tbody
-                        tr
-                            td Yusuf Yasin
-                            td Yavuz
-                            td 22.05.1993
-                            td yusufyyavuz@outlook.com
-                            td 
-                                a.btn.btn-danger.btn-xs(href="users/delete/1") User Delete
+                        each user, i in userList
+
+                            tr
+                                td #{user.name}
+                                td #{user.surname}
+                                td #{user.birthdate}
+                                td #{user.email}
+                                td 
+                                    a.btn.btn-danger.btn-xs(href="/users/delete/" + user._id) Delete User
                 hr
                 div.row
                     div.col-md-12
-                        a.btn.btn-default(href="/users/create") (Add New User)
+                        a.btn.btn-default(href="/users/create") Add New User
 
 

@@ -6,7 +6,9 @@ var User = mongoose.model("User");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('List');
+  User.find(function (error, users) {
+    res.render("list", { userList: users });
+  })
 });
 
 router.get("/create", function (req, res, next){
@@ -14,11 +16,20 @@ router.get("/create", function (req, res, next){
 })
 
 router.post("/create", function (req, res, next){
-  res.send("Data Saved")
+  new User({
+    name : req.body.name,
+    surname : req.body.surname,
+    birthdate : req.body.birthdate,
+    email : req.body.email
+  }).save(function (error, comment) {
+    res.redirect("/users");
+  })
 })
 
 router.get("/delete/:id", function (req, res, next){
-  res.send("Data deleted")
+  User.findByIdAndRemove(req.params.id, function(error, next){
+    res.redirect("/users");
+  })
 })
 
 module.exports = router;
